@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1738">
+  <title>陈坤快跑 · 校园追逐试玩版</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <section class="brand-panel" aria-label="游戏说明">
+      <div class="eyebrow">校园追逐试玩版</div>
+      <h1>陈坤<br><span>快跑！</span></h1>
+      <p class="tagline">从破屋逃进校园，在橙衣反派追上来之前，跳、滑、换道，然后赌一张彩票。</p>
+
+      <div class="feature-list">
+        <div><b>三线跑酷</b><span>方向键 / WASD / 手机滑动</span></div>
+        <div><b>彩票机制</b><span>可能加速，也可能让 Boss 逼近</span></div>
+        <div><b>天使接引</b><span>本局结束后的专属退场动画</span></div>
+      </div>
+
+      <div class="wallet-card">
+        <div><span>金币余额</span><strong id="bankCoins">0</strong></div>
+        <div><span>彩票</span><strong id="bankTickets">0</strong></div>
+        <button id="exchangeButton" type="button">200 金币兑换 1 张彩票</button>
+        <button id="drawButton" class="accent" type="button">本局开奖</button>
+        <p id="lotteryHint">开奖仅在跑酷过程中可用</p>
+      </div>
+    </section>
+
+    <section class="game-frame" aria-label="陈坤快跑游戏区域">
+      <canvas id="game" width="420" height="800" tabindex="0" aria-label="三线校园跑酷游戏"></canvas>
+
+      <div class="hud" aria-live="polite">
+        <div class="hud-chip"><span>距离</span><b id="distanceValue">0m</b></div>
+        <div class="hud-chip"><span>本局金币</span><b id="runCoinsValue">0</b></div>
+        <div class="hud-chip"><span>区域</span><b id="zoneValue">破旧杂物房</b></div>
+      </div>
+
+      <div class="boss-meter" aria-label="Boss距离">
+        <div class="boss-meter__label"><span>反派距离</span><b id="bossDistanceValue">60</b></div>
+        <div class="boss-meter__track"><i id="bossDistanceBar"></i></div>
+      </div>
+
+      <div id="effectBar" class="effect-bar" aria-live="polite"></div>
+      <div id="toast" class="toast" role="status"></div>
+
+      <div id="startOverlay" class="overlay">
+        <div class="overlay-card intro-card">
+          <span class="badge">第一章 · 逃出破屋</span>
+          <h2>准备好做鬼脸了吗？</h2>
+          <p>开场动画结束后自动进入校园。撞到障碍会让反派逼近，连续闪避可以重新拉开距离。</p>
+          <button id="startButton" type="button">开始追逐</button>
+          <small>建议开启声音……虽然这一版还没有声音。</small>
+        </div>
+      </div>
+
+      <div id="resultOverlay" class="overlay hidden">
+        <div class="overlay-card result-card">
+          <span class="badge">天使已完成接引</span>
+          <h2>本局结束</h2>
+          <div class="result-grid">
+            <div><span>奔跑距离</span><b id="resultDistance">0m</b></div>
+            <div><span>获得金币</span><b id="resultCoins">0</b></div>
+            <div><span>彩票使用</span><b id="resultTickets">0</b></div>
+          </div>
+          <button id="restartButton" type="button">再跑一次</button>
+        </div>
+      </div>
+
+      <div class="touch-controls" aria-label="触屏操作按钮">
+        <button data-action="left" aria-label="向左换道">◀</button>
+        <button data-action="jump" aria-label="跳跃">跳</button>
+        <button data-action="slide" aria-label="滑铲">滑</button>
+        <button data-action="right" aria-label="向右换道">▶</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
+
